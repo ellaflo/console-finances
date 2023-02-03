@@ -86,3 +86,8 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+// The total number of lengths in the array
+
+let months = finances.length;
+
