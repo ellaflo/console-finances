@@ -90,4 +90,13 @@ var finances = [
 // The total number of lengths in the array
 
 let months = finances.length;
+console.log(TotalMonths);
 
+// Find the net of Profit/Losses over the entire period
+
+let netTotalAmount = 0;
+for (let i = 0; i < finances.length; i++) { 
+    NumbersDataOnly = (finances[i] [1]);  
+    netTotalAmount = netTotalAmount + NumbersDataOnly; 
+}
+console.log(netTotalAmount); 
