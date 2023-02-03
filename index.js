@@ -100,3 +100,27 @@ for (let i = 0; i < finances.length; i++) {
     netTotalAmount = netTotalAmount + NumbersDataOnly; 
 }
 console.log(netTotalAmount); 
+
+// The average changes in Profit / Loss over the entire period?
+TotalMonthlyDifferences = 0; 
+    for (let i = 0; i < finances.length - 1; i++) { 
+        TotalMonthlyDifferences = TotalMonthlyDifferences + ((finances [i+1][1]) - (finances[i][1]));
+    };
+
+    Average = TotalMonthlyDifferences/(TotalMonths-1);  
+console.log(Average); 
+
+// Calculate the greatest increase in profits over the entire period
+
+greatestIncreaseInProfits = 0;  
+indexOfGreatestProfit = 0; 
+for (let i = 0; i < finances.length - 1; i++) { 
+    currentGreatestIncreaseInProfits = ((finances [i+1][1]) - (finances[i][1])); 
+    if (currentGreatestIncreaseInProfits > greatestIncreaseInProfits) { 
+        greatestIncreaseInProfits = currentGreatestIncreaseInProfits;
+        indexOfGreatestProfit = i+1;
+    }
+
+};
+console.log(finances[indexOfGreatestProfit][0]);
+console.log(greatestIncreaseInProfits);
