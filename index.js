@@ -124,3 +124,18 @@ for (let i = 0; i < finances.length - 1; i++) {
 };
 console.log(finances[indexOfGreatestProfit][0]);
 console.log(greatestIncreaseInProfits);
+
+// The greatest decrease in losess over the entire period
+
+greatestDecreaseInProfits = 0;
+indexOfGreatestProfit = 0;
+for (let i = 0; i < finances.length - 1; i++) {
+    currentGreatestDecreaseInProfits = ((finances [i+1][1]) - (finances[i][1])); 
+    if (currentGreatestDecreaseInProfits <  greatestDecreaseInProfits) { //if statement 
+        greatestDecreaseInProfits = currentGreatestDecreaseInProfits;
+        indexOfGreatestProfit = i+1;
+    }
+
+};
+console.log(finances[indexOfGreatestProfit][0]);
+console.log(greatestDecreaseInProfits);
