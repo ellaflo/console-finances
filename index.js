@@ -89,53 +89,49 @@ var finances = [
 
 // The total number of lengths in the array
 
-let months = finances.length;
-console.log(TotalMonths);
+totalMonths = finances.length;
+console.log(totalMonths);
 
 // Find the net of Profit/Losses over the entire period
 
-let netTotalAmount = 0;
-for (let i = 0; i < finances.length; i++) { 
-    NumbersDataOnly = (finances[i] [1]);  
-    netTotalAmount = netTotalAmount + NumbersDataOnly; 
-}
-console.log(netTotalAmount); 
+let netProfits = 0; 
+    for (let i = 0; i < finances.length; i++) { 
+        netProfits += finances[i][1]; 
+    }
+
+    let totalChange = 0;
+
 
 // The average changes in Profit / Loss over the entire period?
-TotalMonthlyDifferences = 0; 
-    for (let i = 0; i < finances.length - 1; i++) { 
-        TotalMonthlyDifferences = TotalMonthlyDifferences + ((finances [i+1][1]) - (finances[i][1]));
-    };
+let greatestIncreaseDate = finances[0][0];
+    let greatestIncreaseAmount = 0;
+    let greatestDecreaseDate = finances[0][0];
+    let greatestDecreaseAmount = 0;
 
-    Average = TotalMonthlyDifferences/(TotalMonths-1);  
-console.log(Average); 
+    for (let i = 1; i < finances.length; i++) { 
+      let currentProfit = finances[i][1]; 
+      let previousProfit = finances[i-1][1]; 
+      let changeInProfit = currentProfit - previousProfit; 
+      totalChange += changeInProfit;
 
-// Calculate the greatest increase in profits over the entire period
+      if (changeInProfit > greatestIncreaseAmount) {
+        greatestIncreaseDate = finances[i][0];
+        greatestIncreaseAmount = changeInProfit;
 
-greatestIncreaseInProfits = 0;  
-indexOfGreatestProfit = 0; 
-for (let i = 0; i < finances.length - 1; i++) { 
-    currentGreatestIncreaseInProfits = ((finances [i+1][1]) - (finances[i][1])); 
-    if (currentGreatestIncreaseInProfits > greatestIncreaseInProfits) { 
-        greatestIncreaseInProfits = currentGreatestIncreaseInProfits;
-        indexOfGreatestProfit = i+1;
+    // If the change in profits is less than the current greatest decrease in profits, update the greatest decrease variables
+    } else if (changeInProfit < greatestDecreaseAmount) {
+        greatestDecreaseDate = finances[i][0];
+        greatestDecreaseAmount = changeInProfit;
     }
+  }
 
-};
-console.log(finances[indexOfGreatestProfit][0]);
-console.log(greatestIncreaseInProfits);
+  // Divide the total change in profits by the numer of changes in profits
+  let averageChange = totalChange / (finances.length - 1);
 
-// The greatest decrease in losess over the entire period
-
-greatestDecreaseInProfits = 0;
-indexOfGreatestProfit = 0;
-for (let i = 0; i < finances.length - 1; i++) {
-    currentGreatestDecreaseInProfits = ((finances [i+1][1]) - (finances[i][1])); 
-    if (currentGreatestDecreaseInProfits <  greatestDecreaseInProfits) { //if statement 
-        greatestDecreaseInProfits = currentGreatestDecreaseInProfits;
-        indexOfGreatestProfit = i+1;
-    }
-
-};
-console.log(finances[indexOfGreatestProfit][0]);
-console.log(greatestDecreaseInProfits);
+  console.log('Financial Analysis');
+  console.log('----------------------------');
+  console.log(`Total Months: ${totalMonths};`);
+  console.log(`Total: $${netProfits};`);
+  console.log(`Average Change: $${averageChange.toFixed(2)};`);
+  console.log(`Greatest increase in profits in ${greatestIncreaseDate}: was ($${greatestIncreaseAmount});`);
+  console.log(`Greatest decrease in profits in ${greatestDecreaseDate}: was ($${greatestDecreaseAmount});`);
